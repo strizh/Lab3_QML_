@@ -19,10 +19,10 @@ public:
     void ParsingFile(int NumberMessage,QString filterStart,QString filterFinish,QString& Output);
     int GetCountMessage(QString strInput);
     void SetUp();
-    void SendMessageW(QString serverName, QString username, QString password,
-                            QString from, QStringList to,QString subject,QString body);
+    void SendMessageW(QString from, QStringList to,QString subject,QString body);
     int CountReceiveMessage;
     int CountSentMessage;
+    QString strServerName,strLogin,strPassword;
     
 signals:
     

@@ -30,7 +30,9 @@ OTHER_FILES += \
     FormNewMessage.qml \
     MessagesList.qml \
     Directory.qml \
-    MessageView.qml
+    MessageView.qml \
+    Settings.qml \
+    MainWindow.qml
 
 RESOURCES += \
     res.qrc

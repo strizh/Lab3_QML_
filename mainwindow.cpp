@@ -55,7 +55,7 @@ void MainWindow::showMessage(int index, int lal)
     QString Message;
     if (lal==0)
     {
-        logic->ParsingFile(NumberMessage,"\r\n","\r\n",Message);
+        logic->ParsingFile(NumberMessage,"LAL","LAL",Message);
     }
     else
     if (lal==1)
@@ -132,7 +132,7 @@ void MainWindow::sendMessages()
          QString strLogin;
          QString strPassword;
          QString strFrom;
-          QString strSubject;
+         QString strSubject;
          QStringList strTo;
          QString strBody;
              //Считаем информацию со строки ввода через свойство text
@@ -146,6 +146,9 @@ void MainWindow::sendMessages()
              //Ну и наконец выведем в поле вывода нашу информацию
              strTo = strToString.split(";");
              //memo->setProperty("text", str+"+1="+str2);
-          logic->SendMessageW(strServerName,strLogin,strPassword,strFrom,strTo,strSubject,strBody);
+             logic->strLogin = strLogin;
+             logic->strPassword = strPassword;
+             logic->strServerName = strServerName;
+          logic->SendMessageW(strFrom,strTo,strSubject,strBody);
 
 }

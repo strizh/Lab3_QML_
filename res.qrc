@@ -10,5 +10,7 @@
         <file>helvetica.ttf</file>
         <file>segoe.ttf</file>
         <file>awesome.ttf</file>
+        <file>Settings.qml</file>
+        <file>MainWindow.qml</file>
     </qresource>
 </RCC>

@@ -55,7 +55,7 @@ Rectangle {
                         id: mouse_area_message
                         anchors.fill: parent
                         onClicked: {
-                            console.log("Component clicked")
+                            console.log("Component clicked",index," ",dirs.currentIndex)
                             window.showMessage(index,dirs.currentIndex)
                         }
                         onReleased: {
@@ -73,18 +73,6 @@ Rectangle {
     ListModel {
         id: treeModel
         objectName: "treeModel"
-        ListElement {
-            name: "message1"
-        }
-        ListElement {
-            name: "message2"
-        }
-        ListElement {
-            name: "message3"
-        }
-        ListElement {
-            name: "message4"
-        }
     }
     function clear() {
         console.log("qml clear")

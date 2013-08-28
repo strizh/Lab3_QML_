@@ -62,6 +62,13 @@ Rectangle {
                         window.showDirectory(index)
                     }
                 }
+                Timer {
+                    interval: 500; running: true; repeat: false
+                    onTriggered: {
+                        window.showDirectory(index);
+                        running = false;
+                    }
+                }
             }
         }
     }

@@ -14,13 +14,13 @@ void Logic::ParsingFile(int NumberMessage,QString filter,QString& Output)
     bool exit = false;
     while(!exit)
     {
-        QString textLine = textFile.readLine();
+         QString textLine = textFile.readLine();
         if(textLine.startsWith(filter))
         {
             Output = textLine;
             exit = true;
         }
-    }
+     }
     textFile.close();
 }
 void Logic::ParsingFileForInputMessage(int NumberMessage,QString& Output)
@@ -44,23 +44,20 @@ void Logic::ParsingFile(int NumberMessage,QString filterStart,QString filterFini
     bool base64 = false;
     while(!exit)
     {
+        bool flag = true;
         QString textLine = textFile.readLine();
         if(textLine.startsWith("Content-Transfer-Encoding: base64"))
             base64 = true;
         if(textLine.startsWith(filterStart))
         {
-            if(textLine.startsWith("Content-Transfer-Encoding: base64"))
-                base64 = true;
             while(!exit)
             {
                 Output += textLine;
                 textLine = textFile.readLine();
-                if(textLine.startsWith("Content-Transfer-Encoding: base64"))
-                    base64 = true;
-
                 if(textFile.atEnd())exit = true;
             }
         }
+        Output.replace(0,4,"\n");
     }
     if(base64)
     {
@@ -164,13 +161,12 @@ void Logic::ReceiveMessages()
     }
     pop->Quit();
 }
-void Logic::SendMessageW(QString serverName, QString username, QString password,
-                        QString from, QStringList to,QString subject,QString body)
+void Logic::SendMessageW(QString from, QStringList to,QString subject,QString body)
 {
     //We create an event loop and connect to it to prevent the main thread from being crippled when sending large or slow emails
 
     QEventLoop loop;
-    Smtp *smtp = new Smtp(serverName, username, password, from, to, subject, body);
+    Smtp *smtp = new Smtp(strServerName, strLogin, strPassword, from, to, subject, body);
     QObject::connect(smtp, SIGNAL(finished()), &loop, SLOT(quit()));
     loop.exec();
     CountSentMessage++;
